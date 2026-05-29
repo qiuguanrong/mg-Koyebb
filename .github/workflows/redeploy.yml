@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Redeploy Koyeb Service
         run: |
-          curl -s -X POST \
+          curl -v -X POST \
             "https://app.koyeb.com/v1/services/${{ secrets.KOYEB_SERVICE_ID }}/redeploy" \
             -H "Authorization: Bearer ${{ secrets.KOYEB_API_TOKEN }}" \
             -H "Content-Type: application/json"
