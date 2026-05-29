@@ -11,7 +11,10 @@ jobs:
     steps:
       - name: Install Koyeb CLI
         run: |
-          curl -fsSL https://cli.koyeb.com/install.sh | bash
+          wget -q https://github.com/koyeb/koyeb-cli/releases/latest/download/koyeb-cli_linux_amd64.tar.gz
+          tar -xzf koyeb-cli_linux_amd64.tar.gz
+          sudo mv koyeb /usr/local/bin/
+          koyeb version
 
       - name: Authenticate & Redeploy
         run: |
