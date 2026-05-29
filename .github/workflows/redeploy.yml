@@ -1,0 +1,19 @@
+name: Koyeb Hourly Redeploy
+
+on:
+  schedule:
+    - cron: '0 */1 * * *'
+  workflow_dispatch:
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Koyeb CLI
+        run: |
+          curl -fsSL https://cli.koyeb.com/install.sh | bash
+
+      - name: Authenticate & Redeploy
+        run: |
+          koyeb login --token *** secrets.KOYEB_API_TOKEN }}
+          koyeb services redeploy mg-koyebb -a vulnerable-meredithe --use-cache --wait --wait-timeout 3m
