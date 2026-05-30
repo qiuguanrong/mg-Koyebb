@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Redeploy Service
         env:
-          KOYEB_TOKEN: *** secrets.KOYEB_API_TOKEN }}
+          KOYEB_TOKEN: ${{ secrets.KOYEB_API_TOKEN }}
         run: |
           wget -q -O koyeb.tar.gz "https://github.com/koyeb/koyeb-cli/releases/latest/download/koyeb-cli_linux_amd64.tar.gz"
           tar -xzf koyeb.tar.gz
