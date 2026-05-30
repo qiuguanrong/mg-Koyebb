@@ -18,5 +18,5 @@ jobs:
 
       - name: Authenticate & Redeploy
         run: |
-          koyeb login --token *** secrets.KOYEB_API_TOKEN }}
+          koyeb login --token ${{ secrets.KOYEB_API_TOKEN }}
           koyeb services redeploy mg-koyebb -a vulnerable-meredithe --use-cache --wait --wait-timeout 3m
