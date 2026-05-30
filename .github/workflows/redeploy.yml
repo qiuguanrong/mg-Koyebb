@@ -11,10 +11,12 @@ jobs:
     steps:
       - name: Redeploy Service
         env:
-          KOYEB_TOKEN: ${{ secrets.KOYEB_API_TOKEN }}
+          KOYEB_TOKEN: *** secrets.KOYEB_API_TOKEN }}
         run: |
-          wget -q -O koyeb.tar.gz "https://github.com/koyeb/koyeb-cli/releases/latest/download/koyeb-cli_linux_amd64.tar.gz"
-          tar -xzf koyeb.tar.gz
-          chmod +x koyeb
-          ./koyeb login --token "$KOYEB_TOKEN"
-          ./koyeb services redeploy mg-koyebb -a vulnerable-meredithe --use-cache --wait --wait-timeout 3m
+          curl -sL -o koyeb.tar.gz "https://github.com/koyeb/koyeb-cli/releases/latest/download/koyeb-cli_linux_amd64.tar.gz"
+          if [ -f koyeb.tar.gz ]; then
+            tar -xzf koyeb.tar.gz
+            chmod +x koyeb
+            ./koyeb login --token "***"
+            ./koyeb services redeploy mg-koyebb -a vulnerable-meredithe --use-cache --wait --wait-timeout 3m
+          fi
