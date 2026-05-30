@@ -13,3 +13,6 @@ jobs:
           bash install.sh
           export PATH="$HOME/.koyeb/bin:$PATH"
           koyeb services redeploy mg-koyebb -a vulnerable-meredithe --use-cache --wait --wait-timeout 4m --token "${{ secrets.KOYEB_API_TOKEN }}"
+      - name: Notify Telegram
+        run: |
+          curl -s "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" -d "chat_id=861280207&text=✅ Koyeb 重建成功"
