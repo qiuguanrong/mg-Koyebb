@@ -2,7 +2,7 @@ name: Koyeb Hourly Redeploy
 
 on:
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,11 +11,10 @@ jobs:
     steps:
       - name: Redeploy Service
         env:
-          KOYEB_TOKEN: '*** secrets.KOYEB_API_TOKEN }}'
+          KOYEB_TOKEN: "${{ secrets.KOYEB_API_TOKEN }}"
         run: |
-          curl -sL -o install.sh https://raw.githubusercontent.com/koyeb/koyeb-cli/master/install.sh
-          chmod +x install.sh
-          ./install.sh
+          curl -sL -o install.sh "https://raw.githubusercontent.com/koyeb/koyeb-cli/master/install.sh"
+          bash install.sh
           export PATH="$HOME/.koyeb/bin:$PATH"
-          koyeb login --token "***"
+          koyeb login --token "$KOYEB_TOKEN"
           koyeb services redeploy mg-koyebb -a vulnerable-meredithe --use-cache --wait --wait-timeout 3m
