@@ -12,7 +12,7 @@ jobs:
           curl -sL -o install.sh "https://raw.githubusercontent.com/koyeb/koyeb-cli/master/install.sh"
           bash install.sh
           export PATH="$HOME/.koyeb/bin:$PATH"
-          koyeb services redeploy mg-koyeb -a international-vere-josuidao-ddf321a5 --use-cache --wait --wait-timeout 4m --token "${{ secrets.KOYEB_API_TOKEN }}"
+          koyeb services redeploy mg-koyebb -a international-vere-josuidao-ddf321a5 --use-cache --wait --wait-timeout 4m --token "${{ secrets.KOYEB_API_TOKEN }}"
       - name: Notify Telegram
         run: |
           curl -s "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" -d "chat_id=861280207&text=✅  恭喜你啊恭喜 Koyebb 重建成功"
